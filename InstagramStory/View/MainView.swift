@@ -14,30 +14,28 @@ struct MainView : View {
     @ObservedObject private var viewModel = IGStoryViewModel()
     @State private var show  : Bool = false
     @State private var showStory: IGStoryModel?
-
+    
     var body: some View {
         NavigationView {
-            ZStack {
-                VStack {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        LazyVGrid(columns: [GridItem(.fixed(20))]) {
-                            HStack {
-                                ForEach(viewModel.dummyData) { item in
-                                    ProfileImageView(profileImage: .constant(item.profilePicture))
-                                        .onTapGesture {
-                                            showStory = item
-                                            withAnimation(.easeInOut) {
-                                                self.show.toggle()
-                                            }
+            VStack {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyVGrid(columns: [GridItem(.fixed(40))]) {
+                        HStack {
+                            ForEach(viewModel.dummyData) { item in
+                                ProfileImageView(data: .constant(item))
+                                    .onTapGesture {
+                                        showStory = item
+                                        withAnimation(.easeInOut) {
+                                            self.show.toggle()
                                         }
-                                }
+                                    }
                             }
                         }
                     }
-                    .frame(height: 90)
-                    Spacer()
                 }
-
+                .frame(height: 120)
+                
+                Spacer()
             }
             .navigationTitle("Instagram")
             .sheet(item: $showStory) { value in
@@ -49,7 +47,7 @@ struct MainView : View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+            MainView()
     }
 }
 
