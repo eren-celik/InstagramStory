@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1098808326738778006D0F9D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098808226738778006D0F9D /* MainView.swift */; };
+		1098808526738DDB006D0F9D /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098808426738DDB006D0F9D /* ProfileImageView.swift */; };
+		1098808826739D0A006D0F9D /* IGStoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098808726739D0A006D0F9D /* IGStoryViewModel.swift */; };
+		1098808A26739D31006D0F9D /* LoadingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098808926739D31006D0F9D /* LoadingBar.swift */; };
 		109CC37326734D8E00B2A220 /* InstagramStoryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109CC37226734D8E00B2A220 /* InstagramStoryApp.swift */; };
-		109CC37526734D8E00B2A220 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109CC37426734D8E00B2A220 /* ContentView.swift */; };
+		109CC37526734D8E00B2A220 /* IGStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109CC37426734D8E00B2A220 /* IGStoryView.swift */; };
 		109CC37726734D9100B2A220 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 109CC37626734D9100B2A220 /* Assets.xcassets */; };
 		109CC37A26734D9100B2A220 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 109CC37926734D9100B2A220 /* Preview Assets.xcassets */; };
 		109CC38526734D9100B2A220 /* InstagramStoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109CC38426734D9100B2A220 /* InstagramStoryTests.swift */; };
 		109CC39026734D9100B2A220 /* InstagramStoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109CC38F26734D9100B2A220 /* InstagramStoryUITests.swift */; };
+		109CC3A32673579900B2A220 /* IGStoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109CC3A22673579900B2A220 /* IGStoryModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,9 +38,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1098808226738778006D0F9D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		1098808426738DDB006D0F9D /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
+		1098808726739D0A006D0F9D /* IGStoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGStoryViewModel.swift; sourceTree = "<group>"; };
+		1098808926739D31006D0F9D /* LoadingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingBar.swift; sourceTree = "<group>"; };
 		109CC36F26734D8E00B2A220 /* InstagramStory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramStory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		109CC37226734D8E00B2A220 /* InstagramStoryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramStoryApp.swift; sourceTree = "<group>"; };
-		109CC37426734D8E00B2A220 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		109CC37426734D8E00B2A220 /* IGStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGStoryView.swift; sourceTree = "<group>"; };
 		109CC37626734D9100B2A220 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		109CC37926734D9100B2A220 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		109CC37B26734D9100B2A220 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,6 +54,7 @@
 		109CC38B26734D9100B2A220 /* InstagramStoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstagramStoryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		109CC38F26734D9100B2A220 /* InstagramStoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramStoryUITests.swift; sourceTree = "<group>"; };
 		109CC39126734D9100B2A220 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		109CC3A22673579900B2A220 /* IGStoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IGStoryModel.swift; path = ../../../../IGStoryModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +82,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1098808626738E0E006D0F9D /* HelperUI */ = {
+			isa = PBXGroup;
+			children = (
+				1098808426738DDB006D0F9D /* ProfileImageView.swift */,
+				1098808926739D31006D0F9D /* LoadingBar.swift */,
+			);
+			path = HelperUI;
+			sourceTree = "<group>";
+		};
 		109CC36626734D8E00B2A220 = {
 			isa = PBXGroup;
 			children = (
@@ -96,7 +115,9 @@
 			isa = PBXGroup;
 			children = (
 				109CC37226734D8E00B2A220 /* InstagramStoryApp.swift */,
-				109CC37426734D8E00B2A220 /* ContentView.swift */,
+				109CC3A12673576E00B2A220 /* View */,
+				109CC3A02673576500B2A220 /* ViewModel */,
+				109CC39F2673575F00B2A220 /* Model */,
 				109CC37626734D9100B2A220 /* Assets.xcassets */,
 				109CC37B26734D9100B2A220 /* Info.plist */,
 				109CC37826734D9100B2A220 /* Preview Content */,
@@ -128,6 +149,32 @@
 				109CC39126734D9100B2A220 /* Info.plist */,
 			);
 			path = InstagramStoryUITests;
+			sourceTree = "<group>";
+		};
+		109CC39F2673575F00B2A220 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				109CC3A22673579900B2A220 /* IGStoryModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		109CC3A02673576500B2A220 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1098808726739D0A006D0F9D /* IGStoryViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		109CC3A12673576E00B2A220 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1098808626738E0E006D0F9D /* HelperUI */,
+				1098808226738778006D0F9D /* MainView.swift */,
+				109CC37426734D8E00B2A220 /* IGStoryView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,7 +306,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				109CC37526734D8E00B2A220 /* ContentView.swift in Sources */,
+				1098808A26739D31006D0F9D /* LoadingBar.swift in Sources */,
+				1098808826739D0A006D0F9D /* IGStoryViewModel.swift in Sources */,
+				109CC37526734D8E00B2A220 /* IGStoryView.swift in Sources */,
+				1098808326738778006D0F9D /* MainView.swift in Sources */,
+				1098808526738DDB006D0F9D /* ProfileImageView.swift in Sources */,
+				109CC3A32673579900B2A220 /* IGStoryModel.swift in Sources */,
 				109CC37326734D8E00B2A220 /* InstagramStoryApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
