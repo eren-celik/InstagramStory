@@ -22,11 +22,11 @@ struct ProfileImageView: View {
                 
                 Circle()
                     .trim(from: 0, to: 1)
-                    .stroke(AngularGradient(gradient: Gradient(colors: [.red, .orange, .red]), center: .center),
+                    .stroke(AngularGradient(gradient: Gradient(colors: data.seen ?  [.gray] : [.red, .orange, .red]), center: .center),
                             style: StrokeStyle(lineWidth: 3))
                     .frame(width: 60,
                            height: 60)
-            }
+            } 
             
             Text(data.name)
                 .font(.system(.subheadline, design: .rounded))

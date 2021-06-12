@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1075F263267506650053A94E /* IGStoryTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1075F262267506650053A94E /* IGStoryTimer.swift */; };
 		1098808326738778006D0F9D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098808226738778006D0F9D /* MainView.swift */; };
 		1098808526738DDB006D0F9D /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098808426738DDB006D0F9D /* ProfileImageView.swift */; };
 		1098808826739D0A006D0F9D /* IGStoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098808726739D0A006D0F9D /* IGStoryViewModel.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1075F262267506650053A94E /* IGStoryTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGStoryTimer.swift; sourceTree = "<group>"; };
 		1098808226738778006D0F9D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		1098808426738DDB006D0F9D /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		1098808726739D0A006D0F9D /* IGStoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGStoryViewModel.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				1098808726739D0A006D0F9D /* IGStoryViewModel.swift */,
+				1075F262267506650053A94E /* IGStoryTimer.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -193,6 +196,8 @@
 			dependencies = (
 			);
 			name = InstagramStory;
+			packageProductDependencies = (
+			);
 			productName = InstagramStory;
 			productReference = 109CC36F26734D8E00B2A220 /* InstagramStory.app */;
 			productType = "com.apple.product-type.application";
@@ -264,6 +269,8 @@
 				Base,
 			);
 			mainGroup = 109CC36626734D8E00B2A220;
+			packageReferences = (
+			);
 			productRefGroup = 109CC37026734D8E00B2A220 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -313,6 +320,7 @@
 				1098808526738DDB006D0F9D /* ProfileImageView.swift in Sources */,
 				109CC3A32673579900B2A220 /* IGStoryModel.swift in Sources */,
 				109CC37326734D8E00B2A220 /* InstagramStoryApp.swift in Sources */,
+				1075F263267506650053A94E /* IGStoryTimer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
