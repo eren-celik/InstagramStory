@@ -77,7 +77,7 @@ extension IGStoryTimer {
     
     func calculateAngle(offset: CGFloat) -> Double {
         let angle = offset / (UIScreen.main.bounds.width / 2)
-        let degree : CGFloat = 20
+        let degree : CGFloat = 30
         return  Double(angle * degree)
     }
     

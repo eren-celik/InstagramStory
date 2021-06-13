@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import QGrid
-
 
 struct MainView : View {
     @StateObject private var viewModel = IGStoryViewModel()

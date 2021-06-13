@@ -12,6 +12,9 @@ struct IGStoryView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var storyTimerViewModel: IGStoryTimer
     @Binding var storyData: IGStoryModel
+    @State var selection: Int = 0
+    @ObservedObject var vm =  IGStoryViewModel()
+
     
     init(itemCount: Int, stories: Binding<IGStoryModel>) {
         self._storyData = stories
@@ -19,8 +22,8 @@ struct IGStoryView: View {
     }
     
     var body: some View {
-        TabView {
-            ForEach(0 ..< 5) { item in
+        TabView(selection: $selection) {
+            ForEach(vm.dummyData) { item in
                 storyView
             }
         }
@@ -52,13 +55,8 @@ struct IGStoryView: View {
                             .scaledToFill()
                             .frame(width: geometry.size.width,height: nil,alignment: .center)
 
-                        HStack(alignment: .center, spacing: 4){
-                            ForEach(storyData.stories.indices){ index in
-                                LoadingBar(progress: progressBarValue(index) )
-                                    .frame(height: 2, alignment:.leading)
-                            }
-                        }
-                        .padding()
+                        LoadingBarView(userData: storyData)
+                            .environmentObject(storyTimerViewModel)
                         
                         tapNavigators
                         
@@ -71,7 +69,7 @@ struct IGStoryView: View {
                 .init(degrees: storyTimerViewModel.calculateAngle(offset: proxy.frame(in: .global).minX)),
                 axis: (0,1,0),
                 anchor: proxy.frame(in: .global).minX > 0 ? .leading : .trailing,
-                perspective: 2
+                perspective: 2.5
             )
         }
     }
@@ -101,10 +99,3 @@ struct IGStoryView: View {
         } perform: {}
     }
 }
-
-//
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        IGStoryView(itemCount: 1, stories: .constant(IGStoryModel(name: "Eren", profilePicture: "photo1", stories: ["photo10","photo2","photo3","photo5"], seen: false)))
-//    }
-//}
