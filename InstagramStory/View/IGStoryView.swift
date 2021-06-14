@@ -101,7 +101,7 @@ struct IGStoryView: View {
             if value {
                 storyTimerViewModel.pauseTimer()
             }else {
-                self.storyTimerViewModel.resumeTimer()
+                storyTimerViewModel.resumeTimer()
             }
         } perform: {}
     }
