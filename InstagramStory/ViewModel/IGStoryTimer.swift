@@ -19,7 +19,7 @@ final class IGStoryTimer : ObservableObject {
     private var itemCount: Int
     private var cancellable = Set<AnyCancellable>()
     private var displayLink : CADisplayLink?
-
+    
     init(interval: TimeInterval , itemCount: Int) {
         self.interval = interval
         self.itemCount = itemCount
@@ -30,13 +30,13 @@ extension IGStoryTimer {
     
     func startTimer(){
         self.storiesEnd = false
-
+        
         stopTimer()
         
         self.displayLink = .init(target: self, selector: #selector(update))
         guard let displayLink = self.displayLink else { return }
         displayLink.add(to: .current, forMode: .common)
-
+        
     }
     
     @objc private func update() {
@@ -52,8 +52,18 @@ extension IGStoryTimer {
     }
     
     func showStory(by number: Int) {
-        let newProgress = Swift.max((Int(self.progress) + number) % itemCount, 0)
+        let newProgress = Swift.max( (Int(self.progress) + number) % itemCount, 0)
         self.progress = Double(newProgress)
+    }
+    
+    func resetTimer(itemCount: Int){
+        self.progress = 0
+        self.itemCount = itemCount
+        print(itemCount)
+        self.stopTimer()
+        self.displayLink = .init(target: self, selector: #selector(update))
+        guard let displayLink = self.displayLink else { return }
+        displayLink.add(to: .current, forMode: .common)
     }
     
     func pauseTimer(){
@@ -75,10 +85,8 @@ extension IGStoryTimer {
         }
     }
     
-    func calculateAngle(offset: CGFloat) -> Double {
-        let angle = offset / (UIScreen.main.bounds.width / 2)
-        let degree : CGFloat = 30
-        return  Double(angle * degree)
+    func progressBarValue(_ value: Int) -> CGFloat {
+        return min( max( (CGFloat(self.progress) - CGFloat(value)), 0.0) , 1.0)
     }
     
 }

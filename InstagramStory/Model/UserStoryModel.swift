@@ -9,9 +9,9 @@ import Foundation
 
 
 struct IGStoryModel: Identifiable {
-    var id = UUID()
-    let name : String
-    let profilePicture: String
-    let stories : [String]
+    var id = Int()
+    var name : String
+    var profilePicture: String
+    var stories : [String]
     var seen: Bool
 }

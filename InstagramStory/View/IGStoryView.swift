@@ -11,67 +11,74 @@ import Combine
 struct IGStoryView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var storyTimerViewModel: IGStoryTimer
-    @Binding var storyData: IGStoryModel
-    @State var selection: Int = 0
-    @ObservedObject var vm =  IGStoryViewModel()
-
+    @ObservedObject var storyViewModel : IGStoryViewModel = IGStoryViewModel()
     
-    init(itemCount: Int, stories: Binding<IGStoryModel>) {
-        self._storyData = stories
+    @State var storyData: IGStoryModel
+    @State var storySelection : Int
+    
+    init(itemCount: Int, selection: Int, storyData: IGStoryModel) {
+        self._storyData = State(initialValue: storyData)
+        self._storySelection = State(initialValue: selection)
         self.storyTimerViewModel = IGStoryTimer(interval: 5, itemCount: itemCount)
     }
     
     var body: some View {
-        TabView(selection: $selection) {
-            ForEach(vm.dummyData) { item in
-                storyView
+        TabView(selection: $storySelection) {
+            ForEach(storyViewModel.dummyData) { item in
+                GeometryReader { outProxy in
+                    ZStack {
+                        GeometryReader{ inProxy in
+                            ZStack(alignment: .top) {
+                                Image(storyData.stories[Int(self.storyTimerViewModel.progress)])
+                                    .resizable()
+                                    .edgesIgnoringSafeArea(.all)
+                                    .scaledToFill()
+                                    .frame(width: inProxy.size.width)
+                                
+                                VStack(alignment: .leading) {
+                                    HStack(alignment: .center, spacing: 4){
+                                        ForEach(storyData.stories.indices, id: \.self ){ index in
+                                            LoadingBar(progress: self.storyTimerViewModel.progressBarValue(index) )
+                                                .frame(height: 2, alignment:.leading)
+                                        }
+                                    }
+                                    
+                                    HStack {
+                                        Image(storyData.profilePicture)
+                                            .resizable()
+                                            .frame(width: 40, height: 40)
+                                            .aspectRatio(contentMode: .fill)
+                                            .clipShape(Circle())
+                                        Text(storyData.name)
+                                            .font(.title3)
+                                            .foregroundColor(.white)
+                                    }
+                                    .padding(.top, 5)
+                                }
+                                .padding()
+                                
+                                tapNavigators
+                                
+                            }
+                        }
+                    }
+                    .frame(width: outProxy.frame(in: .global).width,
+                           height: outProxy.frame(in: .global).height)
+                    .rotation3DEffect(
+                        Angle(degrees: storyViewModel.calculateAngle(offset: outProxy.frame(in: .global).minX)),
+                        axis: (0, 1, 0),
+                        anchor: outProxy.frame(in: .global).minX > 0 ? .leading : .trailing,
+                        perspective: 2.5
+                    )
+                }
+                .tag(item.id)
+                .onChange(of: storySelection) { onChange(value: $0) }
             }
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         .background(Color.black.edgesIgnoringSafeArea(.all))
-        .onAppear{
-            self.storyTimerViewModel.startTimer()
-        }
-        .onReceive(self.storyTimerViewModel.$storiesEnd) { output in
-            if output {
-                self.presentationMode.wrappedValue.dismiss()
-            }
-        }
-    }
-    
-    private func progressBarValue(_ value: Int) -> CGFloat {
-        return min( max( (CGFloat(self.storyTimerViewModel.progress) - CGFloat(value)), 0.0) , 1.0)
-    }
-    
-    
-    private var storyView: some View {
-        GeometryReader{ proxy in
-            ZStack {
-                GeometryReader{ geometry in
-                    ZStack(alignment: .top) {
-                        Image(storyData.stories[ Int(self.storyTimerViewModel.progress) ])
-                            .resizable()
-                            .edgesIgnoringSafeArea(.all)
-                            .scaledToFill()
-                            .frame(width: geometry.size.width,height: nil,alignment: .center)
-
-                        LoadingBarView(userData: storyData)
-                            .environmentObject(storyTimerViewModel)
-                        
-                        tapNavigators
-                        
-                    }
-                }
-            }
-            .frame(width: proxy.frame(in: .global).width,
-                   height: proxy.frame(in: .global).height)
-            .rotation3DEffect(
-                .init(degrees: storyTimerViewModel.calculateAngle(offset: proxy.frame(in: .global).minX)),
-                axis: (0,1,0),
-                anchor: proxy.frame(in: .global).minX > 0 ? .leading : .trailing,
-                perspective: 2.5
-            )
-        }
+        .onAppear(perform: onAppear)
+        .onReceive(self.storyTimerViewModel.$storiesEnd) { onRecive(value: $0) }
     }
     
     
@@ -97,5 +104,27 @@ struct IGStoryView: View {
                 self.storyTimerViewModel.resumeTimer()
             }
         } perform: {}
+    }
+    
+}
+
+extension IGStoryView {
+    
+    private func onChange(value: Int) {
+        self.storyTimerViewModel.resetTimer(itemCount: storyData.stories.count)
+        let data = storyViewModel.dummyData.filter { model in
+            return model.id == value
+        }
+        guard let value = data.first else { return }
+        self.storyData = value
+    }
+    
+    private func onRecive(value: Published<Bool>.Publisher.Output) {
+        if value {
+            self.presentationMode.wrappedValue.dismiss()
+        }
+    }
+    private func onAppear(){
+        self.storyTimerViewModel.startTimer()
     }
 }

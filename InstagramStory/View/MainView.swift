@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView : View {
-    @StateObject private var viewModel = IGStoryViewModel()
+    @ObservedObject private var viewModel = IGStoryViewModel()
     @State private var showStory : IGStoryModel?
     
     var body: some View {
@@ -21,8 +21,11 @@ struct MainView : View {
                 
                 Spacer()
             }
-            .navigationTitle("Instagram")
-            .sheet(item: $showStory) { IGStoryView(itemCount: $0.stories.count, stories: .constant($0)) }
+            .navigationTitle("Instagram Story")
+            .sheet(item: $showStory,onDismiss: {
+                self.viewModel.orderedData()
+            }) { IGStoryView(itemCount: $0.stories.count, selection: $0.id, storyData: $0) }
+
         }
     }
     

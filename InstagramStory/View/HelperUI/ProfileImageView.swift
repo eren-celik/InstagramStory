@@ -38,6 +38,6 @@ struct ProfileImageView: View {
 struct ProfileImageView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileImageView(data: .constant(
-            IGStoryModel(name: "Eren", profilePicture: "photo1", stories: ["photo10","photo2","photo3","photo5"], seen: false)))
+                            IGStoryModel(name: "Eren", profilePicture: "photo1", stories: ["photo10","photo2","photo3","photo5"], seen: false)))
     }
 }
